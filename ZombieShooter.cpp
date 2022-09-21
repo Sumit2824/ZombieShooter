@@ -45,25 +45,23 @@ int main()
 		Event event;
 
 		while (window.pollEvent(event))
-
 		{
 
 			if (event.type == Event::KeyPressed)
+			{
+
+
 				// Pause a game while playing
 
-				if (event.key.code == Keyboard::Return &&
-
-					state == State::PLAYING)
-
+				if (event.key.code == Keyboard::Return && state == State::PLAYING)
 				{
 
 					state = State::PAUSED;
 
 				}
 
-			// Restart while paused
+				// Restart while paused
 				else if (event.key.code == Keyboard::Return && state == State::PAUSED)
-
 				{
 
 					state = State::PLAYING;
@@ -74,30 +72,26 @@ int main()
 
 				}
 
-			// Start a new game while in GAME_OVER state
-			
+				// Start a new game while in GAME_OVER state
 
-				else if (event.key.code == Keyboard::Return &&
 
-					state == State::GAME_OVER)
-
+				else if (event.key.code == Keyboard::Return && state == State::GAME_OVER)
 				{
 
 					state = State::LEVELING_UP;
 
 				}
 
-			if (state == State::PLAYING)
+				if (state == State::PLAYING)
+				{
 
-			{
+				}
+			}// End event polling
 
-			}
-
-		}// End event polling
-		   // Handle the player quitting
+		}
+		 // Handle the player quitting
 
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
-
 		{
 
 			window.close();
@@ -112,22 +106,20 @@ int main()
 			// Handle the pressing and releasing of the WASD keys
 
 			if (Keyboard::isKeyPressed(Keyboard::W))
-
 			{
 
 				player.moveUp();
-
+			
 			}
 
 			else
-
 			{
-				player.stopUp();
 
+				player.stopUp();
+			
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::S))
-
 			{
 
 				player.moveDown();
@@ -135,14 +127,13 @@ int main()
 			}
 
 			else
-
 			{
 
 				player.stopDown();
+			
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::A))
-
 			{
 
 				player.moveLeft();
@@ -150,14 +141,12 @@ int main()
 			}
 
 			else
-
 			{
 
 				player.stopLeft();
 
 			}
 			if (Keyboard::isKeyPressed(Keyboard::D))
-
 			{
 
 				player.moveRight();
@@ -165,7 +154,6 @@ int main()
 			}
 
 			else
-
 			{
 
 				player.stopRight();
@@ -177,20 +165,17 @@ int main()
 		 // Handle the LEVELING up state
 
 		if (state == State::LEVELING_UP)
-
 		{
 
 			// Handle the player LEVELING up
 
 			if (event.key.code == Keyboard::Num1)
-
 			{
 				state = State::PLAYING;
 
 			}
 
 			if (event.key.code == Keyboard::Num2)
-
 			{
 
 				state = State::PLAYING;
@@ -198,14 +183,12 @@ int main()
 			}
 
 			if (event.key.code == Keyboard::Num3)
-
 			{
 				state = State::PLAYING;
 
 			}
 
 			if (event.key.code == Keyboard::Num4)
-
 			{
 
 				state = State::PLAYING;
@@ -213,7 +196,6 @@ int main()
 			}
 
 			if (event.key.code == Keyboard::Num5)
-
 			{
 
 				state = State::PLAYING;
@@ -221,17 +203,13 @@ int main()
 			}
 
 			if (event.key.code == Keyboard::Num6)
-
 			{
 
 				state = State::PLAYING;
 
 			}
 
-
-
 			if (state == State::PLAYING)
-
 			{
 				// Prepare the level
 
@@ -262,7 +240,6 @@ int main()
 		}// End LEVELING up
 
 		if (state == State::PLAYING)
-
 		{
 
 			// Update the delta time
@@ -286,9 +263,7 @@ int main()
 
 			// Convert mouse position to world coordinates of mainView
 
-			mouseWorldPosition = window.mapPixelToCoords(
-
-				Mouse::getPosition(), mainView);
+			mouseWorldPosition = window.mapPixelToCoords(Mouse::getPosition(), mainView);
 
 			// Update the player
 
@@ -307,13 +282,10 @@ int main()
 		}// End updating the scene
 
 		if (state == State::PLAYING)
-
 		{
 			window.clear();
 
-			// set the mainView to be displayed in the window
-
-			// And draw everything related to it
+			// set the mainView to be displayed in the window And draw everything related to it
 
 			window.setView(mainView);
 
@@ -329,13 +301,11 @@ int main()
 		}
 
 		if (state == State::PAUSED)
-
 		{
 
 		}
 
 		if (state == State::GAME_OVER)
-
 		{
 
 		}
