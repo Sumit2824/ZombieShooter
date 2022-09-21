@@ -25,15 +25,15 @@ public:
 	Vector2f getCenter();
 
 	//what angle is the player facing
-	float getRotation;
+	float getRotation();
 
 	//send a copy of the sprite to the main function
-	Sprite getSprite;
+	Sprite getSprite();
 
 	//Player movement
 	void moveLeft();
 	void moveRight();
-	void moveup();
+	void moveUp();
 	void moveDown();
 
 	//stop player movement
@@ -53,7 +53,7 @@ public:
 	void increaseHealthLevel(int amount);
 
 	//how much health player currently got?
-	int grtHealth();
+	int getHealth();
 
 
 private:
@@ -72,6 +72,7 @@ private:
 	bool m_LeftPressed;
 	bool m_RightPressed;
 	int m_Health;
+	int m_MaxHealth;
 	Time m_LastHit;
 	float m_Speed;
 };
