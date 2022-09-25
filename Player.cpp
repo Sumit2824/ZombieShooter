@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "TextureHolder.h"
 Player::Player()
 {
 	m_Speed = START_SPEED;
@@ -7,8 +8,7 @@ Player::Player()
 
 	//Associate texture with the sprite
 	//!!Watch this space!!
-	m_Texture.loadFromFile("graphics/player.png");
-	m_Sprite.setTexture(m_Texture);
+	m_Sprite = Sprite(TextureHolder::GetTexture("graphics/player.png"));
 
 	//set origin of the sprite for smooth rotation
 	m_Sprite.setOrigin(25, 25);
