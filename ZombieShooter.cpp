@@ -110,7 +110,29 @@ int main()
 
 				if (state == State::PLAYING)
 				{
+					//Reloading
+					if (event.key.code == Keyboard::R)
+					{
+						if (bulletsSpare >= clipSize)
+						{
+							//plenty of bullet
+							bulletsInClip = clipSize;
+							bulletsSpare -= clipSize;
+						}
 
+						else if (bulletsSpare >0)
+						{
+							//only few bullets left
+							bulletsInClip = bulletsSpare;
+							bulletsSpare = 0;
+
+						}
+
+						else
+						{
+
+						}
+					}
 				}
 			}// End event polling
 
@@ -185,6 +207,24 @@ int main()
 				player.stopRight();
 
 			}
+
+			// Fire a bullet
+
+			if (Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (gameTimeTotal.asMilliseconds() - lastPressed.asMilliseconds() > 1000 / fireRate && bulletsInClip > 0)
+				{
+					//pass the center of the player and the center of crosshair to shoot function
+					bullets[currentBullet].shoot(player.getCenter().x, player.getCenter().y, mouseWorldPosition.x, mouseWorldPosition.y);
+					currentBullet++;
+					if (currentBullet > 99)
+					{
+						currentBullet = 0;
+					}
+					lastPressed = gameTimeTotal;
+					bulletsInClip--;
+				}
+			} // end fire bullet
 
 		}// End WASD while playing
 

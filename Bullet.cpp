@@ -47,7 +47,7 @@ void Bullet::stop()
 }
 bool Bullet::IsInFlight()
 {
-	m_InFlight;
+	return m_InFlight;
 }
 FloatRect Bullet::getPosition()
 {
