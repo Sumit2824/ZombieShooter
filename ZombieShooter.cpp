@@ -65,6 +65,14 @@ int main()
 	//when the fire button last pressed
 	Time lastPressed;
 
+	//Hide mouse pointer and replace it with crosshair
+
+	window.setMouseCursorVisible(false);
+	Sprite spriteCrosshair;
+	Texture textureCrosshair = TextureHolder::GetTexture("graphics/crosshair.png");
+	spriteCrosshair.setTexture(textureCrosshair);
+	spriteCrosshair.setOrigin(25, 25);
+
 	//main game loop
 	while (window.isOpen())
 	{
@@ -338,6 +346,11 @@ int main()
 
 			mouseWorldPosition = window.mapPixelToCoords(Mouse::getPosition(), mainView);
 
+			//Set the crosshair to the mouse world position
+			
+			spriteCrosshair.setPosition(mouseWorldPosition);
+
+
 			// Update the player
 
 			player.update(dtAsSeconds, Mouse::getPosition());
@@ -362,6 +375,16 @@ int main()
 				}
 			}
 
+			// Update bullet that are in fight
+
+			for (int i = 0; i < 100; i++)
+			{
+				if (bullets[i].IsInFlight())
+				{
+					bullets[i].update(dtAsSeconds);
+				}
+			}
+
 		}// End updating the scene
 
 		if (state == State::PLAYING)
@@ -380,8 +403,19 @@ int main()
 				window.draw(zombies[i].getSprite());
 			}
 
+			for (int i = 0; i < 100; i++)
+			{
+				if (bullets[i].IsInFlight())
+				{
+					window.draw(bullets[i].getShape());
+				}
+			}
+
 			// Draw the player
 			window.draw(player.getSprite());
+
+			//Draw Crosshair
+			window.draw(spriteCrosshair);
 
 		}
 
