@@ -121,6 +121,7 @@ int main()
 	gameOverText.setFillColor(Color::White);
 	gameOverText.setPosition(250, 850);
 	gameOverText.setString("Press Enter to play");
+
 	// LEVELING up
 	Text levelUpText;
 	levelUpText.setFont(font);
